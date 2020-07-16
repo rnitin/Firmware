@@ -55,11 +55,11 @@ VehicleIMU::VehicleIMU(uint8_t accel_index, uint8_t gyro_index) :
 
 	_accel_integrator.set_reset_interval(configured_interval_us);
 	_accel_integrator.set_reset_samples(sensor_accel_s::ORB_QUEUE_LENGTH);
-	_sensor_accel_sub.set_required_updates(1);
+	_sensor_accel_sub.set_required_updates(sensor_accel_s::ORB_QUEUE_LENGTH / 2);
 
 	_gyro_integrator.set_reset_interval(configured_interval_us);
 	_gyro_integrator.set_reset_samples(sensor_gyro_s::ORB_QUEUE_LENGTH);
-	_sensor_gyro_sub.set_required_updates(1);
+	_sensor_gyro_sub.set_required_updates(sensor_gyro_s::ORB_QUEUE_LENGTH / 2);
 
 	// advertise immediately to ensure consistent ordering
 	_vehicle_imu_pub.advertise();
